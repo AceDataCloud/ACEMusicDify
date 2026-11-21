@@ -1,0 +1,39 @@
+version: 0.1.0
+type: plugin
+author: acedatacloud
+name: acemusic
+label:
+  en_US: ACE Music
+  zh_Hans: ACE Music
+description:
+  en_US: Generate songs and lyrics, work with reference tracks, and retrieve ACE Music tasks.
+  zh_Hans: 生成歌曲和歌词，使用参考音轨，并查询 ACE Music 任务。
+icon: icon.png
+icon_dark: icon.png
+tags:
+- entertainment
+resource:
+  memory: 268435456
+  permission:
+    tool:
+      enabled: true
+plugins:
+  tools:
+  - provider/acemusic.yaml
+meta:
+  version: 0.0.2
+  minimum_dify_version: 1.17.1
+  arch:
+  - amd64
+  - arm64
+  runner:
+    language: python
+    version: '3.12'
+    entrypoint: main
+created_at: '2026-11-22T00:00:00+08:00'
+privacy: PRIVACY.md
+repo: https://github.com/AceDataCloud/ACEMusicDify
+contact: dev@acedata.cloud
+network:
+  domains:
+  - api.acedata.cloud

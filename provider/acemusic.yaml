@@ -1,0 +1,40 @@
+identity:
+  author: acedatacloud
+  name: acemusic
+  label:
+    en_US: ACE Music
+    zh_Hans: ACE Music
+  description:
+    en_US: Generate songs and lyrics, work with reference tracks, and retrieve ACE Music tasks.
+    zh_Hans: 生成歌曲和歌词，使用参考音轨，并查询 ACE Music 任务。
+  icon: icon.png
+  icon_dark: icon.png
+  tags:
+  - entertainment
+credentials_for_provider:
+  acedata_bearer_token:
+    type: secret-input
+    required: true
+    label:
+      en_US: Ace Data Cloud Bearer Token
+      zh_Hans: Ace Data Cloud Token
+    placeholder:
+      en_US: Paste your token (without "Bearer ")
+      zh_Hans: 粘贴 Token（不需要带 Bearer）
+    help:
+      en_US: Acquire a token with access to this service from the Ace Data Cloud console.
+      zh_Hans: 从 Ace Data Cloud 控制台获取具有此服务权限的 Token。
+    url: https://platform.acedata.cloud/console/applications
+tools:
+- tools/generate.yaml
+- tools/custom.yaml
+- tools/upload.yaml
+- tools/cover.yaml
+- tools/mashup.yaml
+- tools/lyrics.yaml
+- tools/retrieve.yaml
+- tools/batch.yaml
+- tools/history.yaml
+extra:
+  python:
+    source: provider/acemusic.py

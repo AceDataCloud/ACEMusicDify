@@ -1,0 +1,1 @@
+The plugin sends the configured application API key, selected inputs and task IDs to api.acedata.cloud for the requested operation. Dify may store workflow inputs, credentials and outputs according to the operator’s settings. Contact dev@acedata.cloud for service questions.
