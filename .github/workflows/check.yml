@@ -14,3 +14,26 @@ jobs:
       - run: |
           python scripts/fetch_icon.py
           python -m unittest discover -v
+      - name: Package and verify the Dify plugin
+        id: package
+        run: |
+          curl --fail --silent --show-error --location \
+            https://github.com/langgenius/dify-plugin-daemon/releases/download/0.5.2/dify-plugin-linux-amd64 \
+            --output "$RUNNER_TEMP/dify"
+          echo "f6dd9de4ef1d528bdf31bc38911d03c7636a1ba662250013ffd3589566381cf3  $RUNNER_TEMP/dify" | sha256sum --check
+          chmod +x "$RUNNER_TEMP/dify"
+          version=$(python -c 'import yaml; print(yaml.safe_load(open("manifest.yaml"))["version"])')
+          package="$RUNNER_TEMP/acemusic-$version.difypkg"
+          "$RUNNER_TEMP/dify" plugin package . -o "$package"
+          unzip -t "$package"
+          source_checksum=$("$RUNNER_TEMP/dify" plugin checksum . 2>&1 | grep -Eo '[0-9a-f]{64}')
+          package_checksum=$("$RUNNER_TEMP/dify" plugin checksum "$package" 2>&1 | grep -Eo '[0-9a-f]{64}')
+          test -n "$source_checksum" && test "$source_checksum" = "$package_checksum"
+          echo "name=acemusic-dify-$version" >> "$GITHUB_OUTPUT"
+          echo "path=$package" >> "$GITHUB_OUTPUT"
+      - name: Upload the installable plugin
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.package.outputs.name }}
+          path: ${{ steps.package.outputs.path }}
+          if-no-files-found: error
