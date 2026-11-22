@@ -4,6 +4,8 @@ Source: [AceDataCloud/ACEMusicDify](https://github.com/AceDataCloud/ACEMusicDify
 
 Package the plugin and import its local .difypkg under Plugins → Install → Local Package. Set the application API key on the ACE Music provider.
 
+This source release is not listed or verified on Dify Marketplace. Use your workspace's permitted local-plugin installation flow; official distribution is being consolidated with the Ace media tools.
+
 ```sh
 python3 -m pip install -r requirements.txt
 python3 scripts/fetch_icon.py
