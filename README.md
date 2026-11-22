@@ -1,5 +1,7 @@
 # ACE Music for Dify
 
+Source: [AceDataCloud/ACEMusicDify](https://github.com/AceDataCloud/ACEMusicDify). Contact: [dev@acedata.cloud](mailto:dev@acedata.cloud).
+
 Package the plugin and import its local .difypkg under Plugins → Install → Local Package. Set the application API key on the ACE Music provider.
 
 ```sh
@@ -10,6 +12,8 @@ dify plugin package . -o ../acemusic.difypkg
 ```
 
 Get an [application API key](https://platform.acedata.cloud/console/applications) with ACE Music access. Enter the raw key in the host's credential setting or server environment. Keep keys out of prompts, shared workflows and commits.
+
+Saving credentials performs a read-only task-history check. The plugin sends requests to the fixed HTTPS endpoint at `api.acedata.cloud`; reference MP3 URLs are passed to that API for the requested import.
 
 | Action | Inputs or result |
 | --- | --- |
